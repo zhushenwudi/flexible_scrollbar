@@ -18,6 +18,8 @@ class FlexibleScrollbar extends StatefulWidget {
   final ScrollWidgetBuilder? scrollLineBuilder;
   final ScrollWidgetBuilder? scrollLabelBuilder;
 
+  final Function()? touchBar;
+
   /// Default value is false. If true prevents the scroll thumb from
   /// disappearing after the set time
   final bool alwaysVisible;
@@ -77,6 +79,7 @@ class FlexibleScrollbar extends StatefulWidget {
     this.scrollThumbBuilder,
     this.scrollLineBuilder,
     this.scrollLabelBuilder,
+    this.touchBar,
     this.scrollLineOffset,
     this.onDragStart,
     this.onDragEnd,
@@ -322,6 +325,7 @@ class _FlexibleScrollbarState extends State<FlexibleScrollbar> {
                     onHorizontalDragEnd: !isVertical && widget.draggable ? onDragEnd : null,
                     onTapDown: onScrollLineTapDown,
                     onTapUp: onScrollLineTapUp,
+                    onTap: widget.touchBar,
                     child: fadeAnimationWrapper(
                       child: Container(
                         height: isVertical && isScrollable ? childHeight : null,
